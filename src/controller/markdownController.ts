@@ -19,21 +19,68 @@ export const getAllMarkdown = async (req: Request, res: Response) => {
 
 export const getMarkdownById = async (req: Request, res: Response) => {};
 
-export const createMarkdown = async (req: Request, res: Response) => {};
+export const createMarkdown = async (req: Request, res: Response) => {
+  try {
+    const { title, content } = req.body;
 
-export const updateMarkdown = async (req: Request, res: Response) => {};
+    //add .md extension to title if not present in title
+    const titleWithExtension = title.includes('.md') ? title : `${title}.md`;
+
+    const newMarkdown = await prisma.markdown.create({
+      data: {
+        title: titleWithExtension,
+        content,
+      },
+    });
+
+    if (!newMarkdown) throw new Error('Markdown not created');
+
+    res.status(201).json(newMarkdown);
+  } catch (error) {
+    if (error instanceof Error) {
+      {
+        res.status(400).json({ error: error.message });
+      }
+    }
+  }
+};
+
+export const updateMarkdown = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+    const updatedMarkdown = await prisma.markdown.update({
+      where: { id: Number(id) },
+      data: {
+        title,
+        content,
+      },
+    });
+
+    if (!updatedMarkdown) throw new Error('Markdown not updated');
+
+    res.status(200).json(updatedMarkdown);
+  } catch (error) {
+    if (error instanceof Error) {
+      {
+        res.status(400).json({ error: error.message });
+      }
+    }
+  }
+};
 
 export const deleteMarkdown = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
     const deletedMarkdown = await prisma.markdown.delete({
-      where: { id: Number(id) },
+      where: { id: id },
     });
 
     if (!deletedMarkdown) throw new Error('Markdown not found');
 
-    res.status(200).json(deletedMarkdown);
+    res.status(200).json('Markdown deleted successfully');
   } catch (error) {
     if (error instanceof Error) {
       {

@@ -13,7 +13,6 @@ model Markdown {
   id        String  @id @default(uuid())
   createdAt DateTime @default(now())
   title     String
-  content   String
-  author    String
+  content   String 
 }
 
