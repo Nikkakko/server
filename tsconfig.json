@@ -6,7 +6,6 @@
     "baseUrl": "src",
     "outDir": "dist",
     "target": "es6",
-    "distDir": "dist",
     "sourceMap": true,
     "noImplicitAny": true
   },
