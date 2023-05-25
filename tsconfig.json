@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["ES6"],
-    "module": "commonjs",
-    "outDir": "build",
-    "rootDir": "src",
-    "strict": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "resolveJsonModule": true
-  }
+    "module": "NodeNext",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "outDir": "dist",
+    "target": "es6",
+    "distDir": "dist",
+    "sourceMap": true,
+    "noImplicitAny": true
+  },
+  "include": ["src/**/*"]
 }
