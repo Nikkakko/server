@@ -9,10 +9,6 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 const PORT = process.env.PORT || 3000;
 
 app.use('/api', markdownRouter);

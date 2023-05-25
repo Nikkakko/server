@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMarkdown = exports.updateMarkdown = exports.createMarkdown = exports.getMarkdownById = exports.getAllMarkdown = void 0;
-const prisma_1 = require("../services/prisma");
+const prisma_1 = __importDefault(require("../services/prisma"));
 const getAllMarkdown = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const markdowns = yield prisma_1.default.markdown.findMany({});
