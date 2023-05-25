@@ -51,7 +51,7 @@ export const updateMarkdown = async (req: Request, res: Response) => {
     const { title, content } = req.body;
 
     const updatedMarkdown = await prisma.markdown.update({
-      where: { id: Number(id) },
+      where: { id: id },
       data: {
         title,
         content,
@@ -60,7 +60,7 @@ export const updateMarkdown = async (req: Request, res: Response) => {
 
     if (!updatedMarkdown) throw new Error('Markdown not updated');
 
-    res.status(200).json(updatedMarkdown);
+    res.status(200).json('Markdown updated successfully');
   } catch (error) {
     if (error instanceof Error) {
       {
